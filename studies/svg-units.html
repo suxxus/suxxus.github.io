@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>view port - preserve aspect radio</title>
+    <style type="text/css">
+    .concepts {
+        border-bottom: 1px solid aqua;
+    }
+    
+    .container {
+        border: 1px solid #CCC;
+        margin: 20px 0;
+    }
+    </style>
+</head>
+
+<body>
+    <h1>SVG studies</h1>
+    <div class="concepts">
+        <h3>initial user coordinate system</h3>
+        <code>
+			<h4>SVG viewPort</h4>
+			<ul>
+				<li>width: 300</li>
+				<li>height: 300</li>
+			</ul>
+			</code>
+        <em>view port coordinate system equals user coordinate system</em>
+        <div class="container">
+            <svg width="300" height="300">
+                <rect width="100" height="100" style="fill:rgb(215,215,232);stroke-width:3;stroke:rgb(0,0,0)" />
+            </svg>
+        </div>
+    </div>
+    <h2>using the viewBox attr user coordinate system can be modified</h2>
+    <div class="concepts">
+        <h3>viewBox can be smaller than viewPort</h3>
+        <code>
+			<h4>SVG viewPort</h4>
+			<ul>
+				<li>width: 300</li>
+				<li>height: 300</li>
+			</ul>
+			<h4>SVG viewBox</h4>
+			<ul>
+				<li>minX: 0</li>
+				<li>minY: 0</li>
+				<li>width: 150</li>
+				<li>height: 150</li>
+			</ul>
+			<ul>
+				<li><em>The region is scaled up (in a zoom-in-like effect) to fill the entire viewport</em></li>
+				<li><em>user coordinate system is mapped to the viewport coordinate system</em></li>
+			</ul>
+			</code>
+        <div class="container">
+            <svg width="300" height="300" viewBox="0 0 150 150">
+                <rect width="100" height="100" style="fill:rgb(215,215,232);stroke-width:3;stroke:rgb(0,0,0)" />
+            </svg>
+        </div>
+    </div>
+    <div class="concepts">
+        <h3>viewBox can be bigger than viewPort</h3>
+        <code>
+			<h4>SVG viewPort</h4>
+			<ul>
+				<li>width: 300</li>
+				<li>height: 300</li>
+			</ul>
+			<h4>SVG viewBox</h4>
+			<ul>
+				<li>minX: 0</li>
+				<li>minY: 0</li>
+				<li>width: 450</li>
+				<li>height: 450</li>
+			</ul>
+			</code>
+        <div class="container">
+            <svg width="300" height="300" viewBox="0 0 450 450">
+                <rect width="100" height="100" style="fill:rgb(215,215,232);stroke-width:3;stroke:rgb(0,0,0)" />
+            </svg>
+        </div>
+    </div>
+    <div class="concepts">
+        <h3>viewBox can be fully or partially visible</h3>
+        <code>
+			<h4>SVG viewPort</h4>
+			<ul>
+				<li>width: 300</li>
+				<li>height: 300</li>
+			</ul>
+			<h4>SVG viewBox</h4>
+			<ul>
+				<li>minX: 50</li>
+				<li>minY: 50</li>
+				<li>width: 300</li>
+				<li>height: 300</li>
+			</ul>
+			</code>
+        <div class="container">
+            <svg width="300" height="300" viewBox="50 50 300 300">
+                <rect width="100" height="100" style="fill:rgb(215,215,232);stroke-width:3;stroke:rgb(0,0,0)" />
+            </svg>
+        </div>
+    </div>
+    <div class="concepts">
+        <h3>viewBox can be fully or partially visible</h3>
+        <code>
+			<h4>SVG viewPort</h4>
+			<ul>
+				<li>width: 300</li>
+				<li>height: 300</li>
+			</ul>
+			<h4>SVG viewBox</h4>
+			<ul>
+				<li>minX: -50</li>
+				<li>minY: -50</li>
+				<li>width: 300</li>
+				<li>height: 300</li>
+			</ul>
+			</code>
+        <div class="container">
+            <svg width="300" height="300" viewBox="-50 -50 300 300">
+                <rect width="100" height="100" style="fill:rgb(215,215,232);stroke-width:3;stroke:rgb(0,0,0)" />
+            </svg>
+        </div>
+    </div>
+    <div class="concepts">
+        <h3>viewBox</h3>
+        <p>any descendant of the svg will be positioned and sized in the new user coordinate system</p>
+        <code>
+			<h4>SVG viewPort</h4>
+			<ul>
+				<li>width: 300</li>
+				<li>height: 300</li>
+			</ul>
+			<h4>SVG viewBox</h4>
+			<ul>
+				<li>minX: 0</li>
+				<li>minY: 0</li>
+				<li>width: 300</li>
+				<li>height: 300</li>
+			</ul>
+			</code>
+        <div class="container">
+            <svg width="300" height="300" viewBox="0 0 300 300">
+                <rect width="100" height="100" style="fill:rgb(215,215,232);stroke-width:3;stroke:rgb(0,0,0)" />
+                <rect width="100" height="100" x="100" y="100" style="fill:rgb(215,215,232);stroke-width:3;stroke:rgb(0,0,0)" />
+            </svg>
+        </div>
+        <code>
+			<h4>SVG viewPort</h4>
+			<ul>
+				<li>width: 300</li>
+				<li>height: 300</li>
+			</ul>
+			<h4>SVG viewBox</h4>
+			<ul>
+				<li>minX: 0</li>
+				<li>minY: 0</li>
+				<li>width: 600</li>
+				<li>height: 600</li>
+			</ul>
+			</code>
+        <p>
+            <em>viewPort <code>width, height</code> represents the user coordinate system before viewBox transformation is applied</em>
+            <br>
+            <em>1 unit in the user coordiante system equal 0.5 units in the viewPort coordinate system</em>
+        </p>
+        <ul>
+            <li><code>viewPort width / viewBox width</code></li>
+            <li><code>viewPort height / viewBox height</code></li>
+        </ul>
+        <div class="container">
+            <svg width="300" height="300" viewBox="0 0 600 600">
+                <rect width="100" height="100" style="fill:rgb(215,215,232);stroke-width:3;stroke:rgb(0,0,0)" />
+                <rect width="100" height="100" x="100" y="100" style="fill:rgb(215,215,232);stroke-width:3;stroke:rgb(0,0,0)" />
+            </svg>
+        </div>
+    </div>
+    <div class="concepts">
+        <h3>The preserveAspectRatio attribute</h3>
+        <h4><code>preserveAspectRatio=defer? align meetOrSlice?</code></h4>
+        <code>
+			<h4>SVG viewPort</h4>
+			<ul>
+				<li>width: 300</li>
+				<li>height: 300</li>
+			</ul>
+			<h4>SVG viewBox</h4>
+			<ul>
+				<li>minX: 0</li>
+				<li>minY: 0</li>
+				<li>width: 100</li>
+				<li>height: 300</li>
+			</ul>
+			</code>
+        <em>by default it preserves aspect ratio</em>
+        <div class="container">
+            <svg width="300" height="300" viewBox="0 0 100 300">
+                <rect width="100" height="100" style="fill:rgb(215,215,232);stroke-width:3;stroke:rgb(0,0,0)" />
+            </svg>
+        </div>
+        <code>
+			<h4>SVG viewPort</h4>
+			<ul>
+				<li>width: 300</li>
+				<li>height: 300</li>
+			</ul>
+			<h4>SVG viewBox</h4>
+			<ul>
+				<li>minX: 0</li>
+				<li>minY: 0</li>
+				<li>width: 100</li>
+				<li>height: 300</li>
+			</ul>
+			</code>
+        <em><code>preserveAspectRatio="none"</code></em>
+        <p>if is set to <code>none</code> the graphic will be scaled inside the viewPort without mantaining the aspect ratio</p>
+        <div class="container">
+            <svg width="300" height="300" preserveAspectRatio="none" viewBox="0 0 100 300">
+                <rect width="100" height="100" style="fill:rgb(215,215,232);stroke-width:3;stroke:rgb(0,0,0)" />
+            </svg>
+        </div>
+    </div>
+    <div class="concepts">
+        <h3>Transform</h3>
+        <h4>the element’s new current coordinate system is transformed by the transformation functions specified inside the transform attribute</h4>
+        <code>
+			<h4>SVG viewPort</h4>
+			<ul>
+				<li>width: 300</li>
+				<li>height: 300</li>
+			</ul>
+			<h4>rec 1</h4>
+			<ul>
+				<li>width: 100</li>
+				<li>height: 100</li>
+				<li>x: 100</li>
+				<li>y: 100</li>
+				<li>transform:translate(-50 -50)</li>
+			</ul>
+			<h4>rec 2</h4>
+			<ul>
+				<li>width: 100</li>
+				<li>height: 100</li>
+				<li>x: 100</li>
+				<li>y: 100</li>
+			</ul>
+			<h4>rec 3</h4>
+			<ul>
+				<li>width: 100</li>
+				<li>height: 100</li>
+				<li>x: 100</li>
+				<li>y: 100</li>
+				<li>transform:translate(100 100)</li>
+			</ul>
+			</code>
+        <div class="container">
+            <svg width="300" height="300">
+                <rect id="transformed-rectangle-1" width="100" height="100" x="100" y="100" style="fill:rgb(215,215,232);stroke-width:3;stroke:rgb(0,0,0)" transform="translate(-50 -50)">
+                </rect>
+                <rect id="transformed-rectangle-2" width="100" height="100" x="100" y="100" style="fill:rgb(215,215,232);stroke-width:3;stroke:rgb(0,0,0)">
+                </rect>
+                <rect id="transformed-rectangle-3" width="100" height="100" x="100" y="100" style="fill:rgb(215,215,232);stroke-width:3;stroke:rgb(0,0,0)" transform="translate(100 100)">
+                </rect>
+            </svg>
+        </div>
+    </div>
+    <div class="concepts">
+        <h3>Scale</h3>
+        <h4>The scaled SVG’s element’s position changes inside the viewport when it is scaled</h4>
+        <code>
+			<h4>SVG viewPort</h4>
+			<ul>
+				<li>width: 300</li>
+				<li>height: 300</li>
+			</ul>
+			<h4>rec 1</h4>
+			<ul>
+				<li>width: 300</li>
+				<li>height: 300</li>
+				<li>x: 100</li>
+				<li>y: 100</li>
+				<li>transform:scale(0.25)</li>
+			</ul>
+			<h4>rec 2</h4>
+			<ul>
+				<li>width: 300</li>
+				<li>height: 300</li>
+				<li>x: 100</li>
+				<li>y: 100</li>
+				<li>transform:scale(0.5)</li>
+			</ul>
+			<h4>rec 3</h4>
+			<ul>
+				<li>width: 300</li>
+				<li>height: 300</li>
+				<li>x: 100</li>
+				<li>y: 100</li>
+			</ul>
+			</code>
+        <div class="container">
+            <svg width="300" height="300">
+                <rect id="scaled-rectangle-3" width="300" height="300" x="100" y="100" style="fill:rgb(215,215,232);stroke-width:3;stroke:rgb(0,0,0)">
+                </rect>
+                <rect id="scaled-rectangle-2" width="300" height="300" x="100" y="100" style="fill:rgb(215,215,232);stroke-width:3;stroke:rgb(0,0,0)" transform="scale(0.5)" />
+                <rect id="scaled-rectangle-1" width="300" height="300" x="100" y="100" style="fill:rgb(215,215,232);stroke-width:3;stroke:rgb(0,0,0)" transform="scale(0.25)" />
+            </svg>
+        </div>
+    </div>
+</body>
+
+</html>
