@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>redux/react</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/redux/3.5.2/redux.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/react-redux/4.4.5/react-redux.js"></script>
+    <style>
+      .container{
+        width: 200px;
+        margin:  100px auto;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- page content -->
+    <div id="root" class="container"></div>
+    <script>
+      "use strict";!function(e){var t=e.Redux,r=e.ReactRedux,n=e.React,u=e.ReactDOM.render,a=r.Provider,o=t.createStore,s=r.connect,c=t.combineReducers,i=function(e){return function(t){return e.createElement("p",{},t.greet)}},l=function(e){return function(t){return e.createElement("em",{},t.phrase)}},h=function(e){var t=i(e),r=function(e){return{greet:"Hello "+e.user}};return s(r)(t)},f=function(e){var t=l(e),r=function(e){e=e||[];var t=Math.floor(Math.random()*e.length);return e[t]},n=function(e){return{phrase:r(e.phrases)}};return s(n)(t)},d=function(e){return function(){var t=h(e),r=f(e);return e.createElement("div",null,e.createElement(t,null),e.createElement(r,null))}},p="user.name",g="selected.phrases",m={user:"",phrases:""},v={user:function(e){return{type:p,name:e}},phrase:function(e){return{type:g,phrases:e}}},y=function(e,t){e=e||"";var r={};r[p]=function(){return t.name},r["default"]=function(){return e};var n=r[t.type]||r["default"];return n()},S=function(e,t){e=e||"";var r={};r[g]=function(){return t.phrases},r["default"]=function(){return e};var n=r[t.type]||r["default"];return n()},E=function(){return c({user:y,phrases:S})},b=o(E(),m);console.log("state should be {user:'', phrase: ''}: ",""===b.getState().user&&""===b.getState().phrase),b.dispatch(v.user("John")),console.log("state should be {user:'John', phrase: ''}: ","John"===b.getState().user&&""===b.getState().phrase),b.dispatch(v.phrase(["Have a nice day","Today will be a great day"])),console.log("state should be {user:'John', phrases: ['Have a nice day', 'Today will be a great day']}: ","John"===b.getState().user&&2===b.getState().phrases.length);var R=function(e){return function(t,r,n){return e.createElement(t,{store:r},e.createElement(n,null))}},J=d(n),w=R(n)(a,b,J);u(w,e.document.querySelector("#root")),e.setTimeout(function(){b.dispatch(v.user("Alice")),b.dispatch(v.phrase(["Is your day","You are nice"]))},2e3)}(window);
+    </script>
+  </body>
+</html>
